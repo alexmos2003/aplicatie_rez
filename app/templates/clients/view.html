@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>{{ client.first_name }} {{ client.last_name }}</h3>
+<p><strong>Email:</strong> {{ client.email }}</p>
+<p><strong>Telefon:</strong> {{ client.phone or "-" }}</p>
+<p><strong>Adresă:</strong> {{ client.address or "-" }}</p>
+<p><strong>Status:</strong> {{ client.status }}</p>
+
+<hr>
+<h5>Interacțiuni</h5>
+<ul class="list-group mb-3">
+  {% for i in interactions %}
+  <li class="list-group-item">
+    <strong>{{ i.type }}</strong> • {{ i.when.strftime('%Y-%m-%d %H:%M') if i.when }}<br>
+    {{ i.notes or "" }}
+  </li>
+  {% else %}
+  <li class="list-group-item">Nu există interacțiuni încă.</li>
+  {% endfor %}
+</ul>
+
+<h6>Adaugă o interacțiune</h6>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">{{ form.type.label }} {{ form.type(class="form-select") }}</div>
+  <div class="mb-3">{{ form.notes.label }} {{ form.notes(class="form-control") }}</div>
+  {{ form.submit(class="btn btn-secondary") }}
+</form>
+{% endblock %}

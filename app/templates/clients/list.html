@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Clienți</h3>
+  <a href="{{ url_for('clients.new_client') }}" class="btn btn-success">+ Client nou</a>
+</div>
+<form class="mb-3" method="get">
+  <div class="input-group">
+    <input name="q" value="{{ q }}" class="form-control" placeholder="Caută după nume sau email">
+    <button class="btn btn-outline-secondary" type="submit">Caută</button>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead>
+    <tr><th>Nume</th><th>Email</th><th>Telefon</th><th>Status</th><th></th></tr>
+  </thead>
+  <tbody>
+    {% for c in clients %}
+    <tr>
+      <td><a href="{{ url_for('clients.view_client', client_id=c.id) }}">{{ c.first_name }} {{ c.last_name }}</a></td>
+      <td>{{ c.email }}</td>
+      <td>{{ c.phone or "-" }}</td>
+      <td>{{ c.status }}</td>
+      <td>
+        <a class="btn btn-sm btn-primary" href="{{ url_for('clients.edit_client', client_id=c.id) }}">Editează</a>
+        <form method="post" action="{{ url_for('clients.delete_client', client_id=c.id) }}" style="display:inline" onsubmit="return confirm('Ștergi clientul?')">
+          <button class="btn btn-sm btn-danger" type="submit">Șterge</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

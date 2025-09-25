@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-4">Panou principal</h3>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <div class="small text-muted">Total clienți</div>
+        <div class="display-6">{{ total_clients }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <div class="small text-muted">Activi</div>
+        <div class="display-6">{{ active_clients }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <div class="small text-muted">Inactivi</div>
+        <div class="display-6">{{ inactive_clients }}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card text-center shadow-sm">
+      <div class="card-body">
+        <div class="small text-muted">Interacțiuni (30 zile)</div>
+        <div class="display-6">{{ calls + emails + meetings }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6 class="mb-3">Interacțiuni pe tip (30 zile)</h6>
+        <canvas id="interactionsChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h6 class="mb-3">Clienți activi vs inactivi</h6>
+        <canvas id="statusChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h6 class="mb-3">Ultimele interacțiuni</h6>
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <thead><tr><th>Data</th><th>Client ID</th><th>Tip</th><th>Note</th></tr></thead>
+        <tbody>
+          {% for i in recent %}
+            <tr>
+              <td>{{ i.when.strftime('%Y-%m-%d %H:%M') if i.when }}</td>
+              <td>{{ i.client_id }}</td>
+              <td>{{ i.type }}</td>
+              <td>{{ i.notes or '' }}</td>
+            </tr>
+          {% else %}
+            <tr><td colspan="4">Nu există interacțiuni încă.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{# În caz că baza ta nu are deja <script src="...chart.js"></script> în base.html, îl adăugăm fallback aici #}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx1 = document.getElementById('interactionsChart').getContext('2d');
+new Chart(ctx1, {
+  type: 'bar',
+  data: {
+    labels: ['Apeluri', 'Emailuri', 'Întâlniri'],
+    datasets: [{
+      label: 'Număr',
+      data: [{{ calls }}, {{ emails }}, {{ meetings }}]
+    }]
+  }
+});
+
+const ctx2 = document.getElementById('statusChart').getContext('2d');
+new Chart(ctx2, {
+  type: 'pie',
+  data: {
+    labels: ['Activi', 'Inactivi'],
+    datasets: [{
+      data: [{{ active_clients }}, {{ inactive_clients }}]
+    }]
+  }
+});
+</script>
+{% endblock %}
