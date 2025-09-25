@@ -1,0 +1,210 @@
+.container {
+  width: 500px;
+  height: 400px;
+  overflow: hidden;
+}
+
+.hover-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.hover-image:hover {
+  transform: translateX(20px);
+}
+
+.hover-image {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.text-center {
+  text-align: center;
+}
+
+body {
+background-color: #87888a;
+}
+
+
+.top-bar {
+background-color: #454545;
+}
+.top-bar .button-group {
+margin-right: 10px;
+}
+
+.top-bar-right {
+display: flex;
+align-items: center;
+}
+
+.button-group {
+display: flex;
+align-items: center;
+justify-content: flex-end;
+}
+
+.button-group .button {
+margin-top: 15px;
+margin-left: 10px;
+}
+.top-bar ul.menu {
+background-color: #454545;
+}
+
+.top-bar ul.menu li a {
+color: #000000;
+}
+
+.top-bar-center {
+flex-grow: 1;
+text-align: center;
+}
+
+.custom-green {
+background-color: #454545; 
+color: rgb(0, 0, 0); 
+}
+
+.small-search {
+width: 300px; 
+margin-right: 10px;
+}
+
+.search-container {
+display: flex; 
+align-items: center; 
+}
+
+.centered-cards {
+display: flex;
+justify-content: center;
+}
+
+.button-grup {
+justify-content: center;
+}
+
+.table-responsive {
+overflow-x: auto;
+}
+.table-responsive table {
+width: 100%;
+max-width: 100%;
+margin-bottom: 1rem;
+background-color: transparent;
+}
+.table-responsive th, .table-responsive td {
+white-space: nowrap;
+}
+.button {
+  background-color: #333;
+  border: 1px solid #333;
+}
+.button:hover {
+  background-color: #555; 
+  border: 1px solid #555;
+  color: #fff; 
+}
+.orbit-image {
+  width: 50%; 
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.top-bar {
+  background-color: #454545; 
+  padding: 0.75rem 1rem; 
+  box-shadow: 0 4px 6px rgba(124, 119, 119, 0.688); 
+}
+
+.top-bar .menu {
+  margin: 0; 
+  padding: 0; 
+  list-style-type: none; 
+  display: flex; 
+  align-items: center; 
+}
+
+.top-bar .menu li {
+  margin-right: 1rem; 
+}
+
+.top-bar .menu li a {
+  color: #fff; 
+  text-decoration: none; 
+  font-weight: bold; 
+  padding: 0.5rem ; 
+  border-radius: 4px; 
+  transition: background-color 0.3s ease; 
+}
+
+.top-bar .menu li a:hover {
+  background-color: rgba(52, 52, 52, 0.1); 
+}
+
+.top-bar .button-group .button {
+  background-color: #333;
+  color: #fff; 
+  border: none; 
+  padding: 0.5rem 1rem; 
+  border-radius: 4px; 
+  transition: background-color 0.3s ease; 
+}
+
+.top-bar .button-group .button:hover {
+  background-color: rgb(102, 100, 100); 
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center; 
+}
+
+.page-header {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #454545;
+}
+
+form#contact_form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form#contact_form input[type="text"],
+form#contact_form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+form#contact_form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form#contact_form button:hover {
+  background-color: #555;
+}
